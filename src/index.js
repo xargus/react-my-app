@@ -3,11 +3,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import TestComponent from './component/TestComponent';
+import Timer from './component/Timer';
+import TodoApp from './component/TodoApp';
+import MarkdownEditor from './component/MarkdownEditor';
+import { Provider } from 'react-redux';
+import rootReducers from './reducers';
+import { configureStore } from '@reduxjs/toolkit';
+
+const store = configureStore({
+  reducer: rootReducers
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // <MarkdownEditor/>,
+  <Provider store={store}>
+    <TodoApp />
+  </Provider>,
+  // <Timer/>,
+  // <TestComponent name="test"/>,
+  // <React.StrictMode>
+  //   <App />
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
