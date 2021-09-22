@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addTodo, getList } from '../reducers/TodoListSlice';
 import TodoList from './TodoList';
+import PostModel from '../api/PostModel';
 
 class TodoApp extends React.Component {
     
@@ -15,14 +16,11 @@ class TodoApp extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        if (this.state.text.length == 0) {
+        if (this.state.text.length === 0) {
             return;
         }
 
-        const newItem = {
-            text: this.state.text,
-            id: Date.now()
-        }
+        const newItem = new PostModel(Date.now(), this.state.text)
         this.setState(state => ({
             // items: state.items.concat(newItem),
             text: ''

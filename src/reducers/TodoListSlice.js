@@ -1,10 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getPosts } from '../api/posts';
+import { getPosts, getPostsFirebase } from '../api/Posts';
 
 export const getList = createAsyncThunk('posts', async (data, { rejectWithValue }) => {
     try {
-        const response = await getPosts();
-        return response.data;
+        const docSnap = await getPostsFirebase();
+        const data = docSnap.data()
+        console.log(data);
+        // const response = await getPosts();
+        // return response.data;
+        return data;
     } catch (error) {
         if (!error.response) {
             throw error;

@@ -12,7 +12,11 @@ import rootReducers from './reducers';
 import { configureStore } from '@reduxjs/toolkit';
 
 const store = configureStore({
-  reducer: rootReducers
+  reducer: rootReducers,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false
+    })
 });
 
 ReactDOM.render(
